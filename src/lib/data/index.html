@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Proficiency Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#F5F5F5] text-[#333333] font-roboto flex flex-col min-h-screen selection:bg-[#4A90E2] selection:text-white">
+
+    <div id="app-container" class="container mx-auto p-4 flex-grow flex flex-col items-center justify-center">
+
+        <div id="start-screen" class="w-full max-w-2xl text-center bg-white p-8 rounded-xl shadow-2xl">
+            <h1 class="text-4xl font-bold text-[#4A90E2] mb-6">English Proficiency Test</h1>
+            <div class="text-left space-y-4 mb-8 text-gray-700">
+                <p><strong class="text-[#4A90E2]">Total Questions:</strong> <span id="total-questions-info"></span></p>
+                <p><strong class="text-[#4A90E2]">Sections:</strong> Vocabulary, Grammar, Reading, Listening</p>
+                <p><strong class="text-[#4A90E2]">Estimated Time:</strong> <span id="test-duration-info"></span> minutes</p>
+                <p><strong class="text-[#4A90E2]">Instructions:</strong></p>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Ensure a stable internet connection.</li>
+                    <li>For listening questions, ensure your audio is working.</li>
+                    <li>Once the test starts, a timer will begin.</li>
+                    <li>Do not refresh the page during the test.</li>
+                </ul>
+            </div>
+            <button id="start-test-button" class="w-full bg-[#4A90E2] hover:bg-[#357ABD] text-white font-bold py-3 px-6 rounded-lg text-xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg transform hover:scale-105">
+                Start Test
+            </button>
+        </div>
+
+        <div id="test-screen" class="hidden w-full max-w-4xl flex-grow flex-col">
+            <div id="test-header" class="sticky top-0 z-10 bg-white/80 backdrop-blur-md p-4 mb-6 rounded-b-xl shadow-lg flex justify-between items-center">
+                <div>
+                    <span id="section-name" class="font-semibold text-[#4A90E2] text-lg">Section</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div id="timer" class="text-xl font-bold text-gray-700 bg-gray-200 px-3 py-1 rounded-md">00:00</div>
+                    <div id="progress-text" class="text-sm text-gray-600">Question 0/0</div>
+                </div>
+                <button id="end-test-button-header" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors">End Test</button>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full mb-6 overflow-hidden">
+                <div id="progress-bar" class="h-full bg-[#50E3C2] transition-all duration-300 ease-linear"></div>
+            </div>
+
+            <div id="question-container" class="bg-white p-6 md:p-8 rounded-xl shadow-2xl flex-grow mb-6">
+            </div>
+
+            <div id="navigation-buttons" class="flex justify-between items-center mt-auto pt-4">
+                <button id="prev-question-button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-6 rounded-lg transition-colors shadow-sm hover:shadow-md">Previous</button>
+                <button id="next-question-button" class="bg-[#4A90E2] hover:bg-[#357ABD] text-white font-semibold py-2 px-6 rounded-lg transition-colors shadow-sm hover:shadow-md">Next</button>
+            </div>
+        </div>
+
+        <div id="results-screen" class="hidden w-full max-w-3xl text-center bg-white p-8 rounded-xl shadow-2xl">
+            <h2 class="text-3xl font-bold text-[#4A90E2] mb-6">Test Results</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-lg">\n                <div class="bg-gray-100 p-6 rounded-lg shadow-md">\n                    <p class="text-gray-600">Total Score:</p>\n                    <p id="total-score" class="text-4xl font-bold text-[#F5A623]"></p>\n                </div>\n                <div class="bg-gray-100 p-6 rounded-lg shadow-md">\n                    <p class="text-gray-600">Estimated CEFR Level:</p>\n                    <p id="cefr-level" class="text-4xl font-bold text-[#50E3C2]"></p>\n                </div>\n            </div>\n            <div class="mb-8">\n                <h3 class="text-2xl font-semibold text-[#4A90E2] mb-4">Section Scores</h3>\n                <div id="section-scores-chart" class="space-y-3">\n                </div>\n            </div>\n            <div class="space-x-4">\n                <button id="review-answers-button" class="bg-[#50E3C2] hover:bg-[#3dbaa2] text-white font-semibold py-3 px-6 rounded-lg transition-colors shadow-sm hover:shadow-md">Review Answers</button>\n                <button id="retake-test-button" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors shadow-sm hover:shadow-md">Retake Test</button>\n            </div>\n        </div>\n        \n        <div id="review-screen" class="hidden w-full max-w-4xl flex-grow flex-col">\n            <div class="bg-white p-6 md:p-8 rounded-xl shadow-2xl flex-grow mb-6">\n                <h2 class="text-3xl font-bold text-[#4A90E2] mb-6 text-center">Review Answers</h2>\n                <div id="review-questions-container" class="space-y-8">\n                </div>\n                <div class="mt-8 text-center">\n                    <button id="back-to-results-button" class="bg-[#4A90E2] hover:bg-[#357ABD] text-white font-semibold py-3 px-6 rounded-lg transition-colors">Back to Results</button>\n                </div>\n            </div>\n        </div>\n\n    </div>\n\n    <div id="submit-modal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm hidden items-center justify-center p-4 z-50">\n        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full text-center">\n            <h3 class="text-2xl font-bold text-gray-800 mb-4">Confirm Submission</h3>\n            <p id="modal-message" class="text-gray-600 mb-6">Are you sure you want to submit your test? You cannot change your answers after submission.</p>\n            <p id="modal-timer-info" class="text-sm text-gray-500 mb-6"></p>\n            <div class="flex justify-around">\n                <button id="cancel-submit-button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-6 rounded-lg transition-colors">Cancel</button>\n                <button id="confirm-submit-button" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-lg transition-colors">Submit</button>\n            </div>\n        </div>\n    </div>\n    \n    <script type="module" src="app.js"></script>\n</body>\n</html>\n```

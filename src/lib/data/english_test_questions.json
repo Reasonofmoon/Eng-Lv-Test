@@ -1,0 +1,614 @@
+{
+  "testSettings": {
+    "totalTimeMinutes": 40,
+    "sections": ["Vocabulary", "Grammar", "Reading Comprehension", "Listening Comprehension"]
+  },
+  "vocabulary": [
+    {
+      "id": "V001",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "초급",
+      "question": "Choose the word that has a similar meaning to 'happy'.",
+      "options": ["A) sad", "B) glad", "C) angry", "D) tired"],
+      "answer": "B",
+      "explanation": "'Happy'는 '행복한'이라는 의미이며, 'glad'도 '기쁜'이라는 유사한 의미를 가집니다."
+    },
+    {
+      "id": "V002",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "초급",
+      "question": "She felt very _____ after running the marathon.",
+      "options": ["A) fast", "B) tired", "C) easy", "D) small"],
+      "answer": "B",
+      "explanation": "마라톤을 뛴 후에는 매우 '피곤함'을 느끼는 것이 자연스럽습니다. 'tired'가 문맥에 가장 적절합니다."
+    },
+    {
+      "id": "V003",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "초급",
+      "question": "What does 'delicious' mean?",
+      "options": ["A) not good", "B) very tasty", "C) difficult", "D) large"],
+      "answer": "B",
+      "explanation": "'Delicious'는 '아주 맛있는'이라는 의미입니다."
+    },
+    {
+      "id": "V004",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "초급",
+      "question": "He needs to wear a jacket because it's _____ outside.",
+      "options": ["A) hot", "B) warm", "C) cold", "D) sunny"],
+      "answer": "C",
+      "explanation": "재킷을 입어야 하는 이유는 밖이 '추워서'입니다. 'cold'가 문맥에 맞습니다."
+    },
+    {
+      "id": "V005",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "초급",
+      "question": "Choose the opposite of 'big'.",
+      "options": ["A) long", "B) small", "C) wide", "D) high"],
+      "answer": "B",
+      "explanation": "'Big'의 반대말은 'small'입니다."
+    },
+    {
+      "id": "V006",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "중급",
+      "question": "The company is looking for someone with strong communication skills and a proactive _____.",
+      "options": ["A) attitude", "B) problem", "C) break", "D) color"],
+      "answer": "A",
+      "explanation": "회사는 강한 의사소통 능력과 적극적인 '태도(attitude)'를 가진 사람을 찾습니다."
+    },
+    {
+      "id": "V007",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "중급",
+      "question": "What does 'efficient' mean?",
+      "options": ["A) slow and careful", "B) wasting time or energy", "C) working well without wasting time or energy", "D) very difficult"],
+      "answer": "C",
+      "explanation": "'Efficient'는 '효율적인'이라는 의미로, 시간이나 에너지를 낭비하지 않고 일을 잘 처리하는 것을 뜻합니다."
+    },
+    {
+      "id": "V008",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "중급",
+      "question": "Before the final decision, they held a series of _____ meetings to discuss the proposal.",
+      "options": ["A) minor", "B) preliminary", "C) sudden", "D) private"],
+      "answer": "B",
+      "explanation": "최종 결정 전에 제안을 논의하기 위한 '예비적인(preliminary)' 회의를 여러 차례 가졌다는 내용이 문맥상 자연스럽습니다."
+    },
+    {
+      "id": "V009",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "중급",
+      "question": "Choose the word closest in meaning to 'crucial'.",
+      "options": ["A) unimportant", "B) difficult", "C) essential", "D) helpful"],
+      "answer": "C",
+      "explanation": "'Crucial'은 '결정적인, 매우 중요한'이라는 의미로, 'essential'(필수적인)과 가장 가깝습니다."
+    },
+    {
+      "id": "V010",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "중급",
+      "question": "The discovery of the new medicine was a major _____ for patients suffering from the disease.",
+      "options": ["A) setback", "B) barrier", "C) breakthrough", "D) mistake"],
+      "answer": "C",
+      "explanation": "신약의 발견은 질병으로 고통받는 환자들에게 '획기적인 발전(breakthrough)'이 됩니다."
+    },
+     {
+      "id": "V011",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "중급",
+      "question": "What does the idiom 'break a leg' mean?",
+      "options": ["A) to wish someone good luck", "B) to actually break a bone", "C) to move very quickly", "D) to finish a race"],
+      "answer": "A",
+      "explanation": "'Break a leg'는 주로 공연 전에 누군가에게 '행운을 빌다'는 의미로 사용되는 관용구입니다."
+    },
+    {
+      "id": "V012",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "중급",
+      "question": "Due to unforeseen circumstances, the project deadline had to be _____ by a week.",
+      "options": ["A) advanced", "B) postponed", "C) completed", "D) ignored"],
+      "answer": "B",
+      "explanation": "예상치 못한 상황 때문에 프로젝트 마감일이 한 주 '연기(postponed)'되어야 했습니다."
+    },
+     {
+      "id": "V013",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "중급",
+      "question": "Find the synonym for 'ubiquitous'.",
+      "options": ["A) rare", "B) scarce", "C) omnipresent", "D) limited"],
+      "answer": "C",
+      "explanation": "'Ubiquitous'는 '어디에나 있는, 아주 흔한'이라는 의미로, 'omnipresent'(편재하는)와 같은 뜻입니다."
+    },
+    {
+      "id": "V014",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "중급",
+      "question": "She has a remarkable _____ for languages; she can learn them very quickly.",
+      "options": ["A) aversion", "B) aptitude", "C) disinterest", "D) challenge"],
+      "answer": "B",
+      "explanation": "언어를 아주 빨리 배울 수 있다는 것은 언어에 대한 뛰어난 '소질이나 적성(aptitude)'이 있다는 뜻입니다."
+    },
+    {
+      "id": "V015",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "중급",
+      "question": "What is the meaning of 'mitigate'?",
+      "options": ["A) to make something worse", "B) to intensify something", "C) to make something less severe", "D) to ignore something"],
+      "answer": "C",
+      "explanation": "'Mitigate'는 '완화시키다, 경감하다'는 의미로, 무언가를 덜 심각하게 만드는 것을 뜻합니다."
+    },
+     {
+      "id": "V016",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "고급",
+      "question": "His arguments were so complex and _____ that few people could follow them.",
+      "options": ["A) lucid", "B) coherent", "C) convoluted", "D) simple"],
+      "answer": "C",
+      "explanation": "논쟁이 복잡해서 따라가기 힘들었다는 것은 논리가 '뒤얽히고 복잡했다(convoluted)'는 의미입니다."
+    },
+    {
+      "id": "V017",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "고급",
+      "question": "Choose the word that means 'tending to keep a firm hold of anything'.",
+      "options": ["A) ephemeral", "B) tenacious", "C) volatile", "D) lenient"],
+      "answer": "B",
+      "explanation": "'무엇이든 단단히 붙잡으려는 경향이 있는'이라는 의미는 'tenacious'(고집 센, 집요한)에 해당합니다."
+    },
+    {
+      "id": "V018",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "고급",
+      "question": "The treaty was signed, aiming to _____ trade barriers between the two nations.",
+      "options": ["A) reinforce", "B) exacerbate", "C) abolish", "D) implement"],
+      "answer": "C",
+      "explanation": "조약은 두 나라 사이의 무역 장벽을 '폐지(abolish)'하는 것을 목표로 체결됩니다. Reinforce는 강화하다, exacerbate는 악화시키다, implement는 실행하다입니다."
+    },
+     {
+      "id": "V019",
+      "question_type": "어휘 의미 파악",
+      "difficulty": "고급",
+      "question": "What is the meaning of 'sycophant'?",
+      "options": ["A) a person who is self-sufficient", "B) a person who acts submissively to gain advantage", "C) a person who is highly critical", "D) a person who is naturally kind"],
+      "answer": "B",
+      "explanation": "'Sycophant'는 '아첨꾼'으로, 이득을 얻기 위해 비굴하게 행동하는 사람을 의미합니다."
+    },
+    {
+      "id": "V020",
+      "question_type": "문맥상 어휘 선택",
+      "difficulty": "고급",
+      "question": "His response to the criticism was surprisingly mild, almost _____.",
+      "options": ["A) belligerent", "B) vociferous", "C) sanguine", "D) meek"],
+      "answer": "D",
+      "explanation": "비판에 대한 반응이 놀라울 정도로 온화했다는 것은 거의 '온순하고 유순한(meek)' 정도였다는 의미입니다. belligerent는 호전적인, vociferous는 소리 높은, sanguine은 낙관적인입니다."
+    }
+  ],
+  "grammar": [
+    {
+      "id": "G001",
+      "question_type": "문장 완성",
+      "difficulty": "초급",
+      "question": "I _____ to the park every Saturday.",
+      "options": ["A) go", "B) goes", "C) going", "D) went"],
+      "answer": "A",
+      "explanation": "현재의 반복적인 습관을 나타낼 때는 주어 'I'에 맞는 현재형 동사 'go'를 사용합니다."
+    },
+     {
+      "id": "G002",
+      "question_type": "문법 오류 식별",
+      "difficulty": "초급",
+      "question": "Identify the sentence with a grammatical error:",
+      "options": ["A) She like ice cream.", "B) They like pizza.", "C) He likes fruit.", "D) We like cake."],
+      "answer": "A",
+      "explanation": "주어가 3인칭 단수(She)일 때는 동사 'like'에 -s를 붙여 'likes'가 되어야 합니다. 따라서 'She like ice cream'은 틀린 문장입니다."
+    },
+    {
+      "id": "G003",
+      "question_type": "문장 완성",
+      "difficulty": "초급",
+      "question": "Yesterday, they _____ a new movie.",
+      "options": ["A) see", "B) seeing", "C) saw", "D) sees"],
+      "answer": "C",
+      "explanation": "어제 일어난 과거의 일을 나타내므로 동사의 과거형 'saw'를 사용해야 합니다."
+    },
+    {
+      "id": "G004",
+      "question_type": "문법 오류 식별",
+      "difficulty": "초급",
+      "question": "Which sentence is grammatically correct?",
+      "options": ["A) He don't study.", "B) She doesn't studies.", "C) They doesn't study.", "D) I don't study."],
+      "answer": "D",
+      "explanation": "주어 'I'에는 조동사 'don't'를 사용하며, 동사원형 'study'가 뒤에 옵니다. A) He don't -> doesn't, B) She doesn't studies -> study, C) They doesn't -> don't."
+    },
+    {
+      "id": "G005",
+      "question_type": "문장 완성",
+      "difficulty": "초급",
+      "question": "There _____ three apples in the basket.",
+      "options": ["A) is", "B) am", "C) are", "D) be"],
+      "answer": "C",
+      "explanation": "주어에 해당하는 'three apples'가 복수이므로, 'There are'를 사용합니다."
+    },
+    {
+      "id": "G006",
+      "question_type": "문법 오류 식별",
+      "difficulty": "중급",
+      "question": "Find the error: The committee was divided in their opinion on the matter.",
+      "options": ["A) The committee", "B) was divided", "C) in their opinion", "D) on the matter"],
+      "answer": "B",
+      "explanation": "집합 명사 'committee'가 구성원 각각의 의견을 나타낼 때는 복수 취급하여 'were divided'가 맞습니다. 단체 전체의 단일한 의견이면 단수 취급합니다. 여기서는 'their opinion'으로 복수 소유격을 사용했으므로 복수 동사가 와야 합니다."
+    },
+    {
+      "id": "G007",
+      "question_type": "문장 완성",
+      "difficulty": "중급",
+      "question": "If I had known you were coming, I _____ a cake.",
+      "options": ["A) will bake", "B) would bake", "C) would have baked", "D) had baked"],
+      "answer": "C",
+      "explanation": "과거 사실에 대한 가정(가정법 과거 완료)이므로 'If + 주어 + had p.p., 주어 + would have p.p.' 구조가 와야 합니다."
+    },
+    {
+      "id": "G008",
+      "question_type": "문법 오류 식별",
+      "difficulty": "중급",
+      "question": "Identify the sentence with a grammatical error:",
+      "options": ["A) Neither of the solutions are acceptable.", "B) Both of the solutions are acceptable.", "C) One of the solutions is acceptable.", "D) Some of the solutions are acceptable."],
+      "answer": "A",
+      "explanation": "'Neither of + 복수명사' 구문에서는 동사는 단수 취급합니다. 따라서 'are acceptable'이 아니라 'is acceptable'이 맞습니다."
+    },
+    {
+      "id": "G009",
+      "question_type": "문장 완성",
+      "difficulty": "중급",
+      "question": "She is used to _____ up early in the morning.",
+      "options": ["A) get", "B) getting", "C) got", "D) gets"],
+      "answer": "B",
+      "explanation": "'be used to + -ing'는 '~에 익숙하다'는 의미의 구문입니다. 따라서 'getting'이 맞습니다. 'used to + 동사원형'은 과거의 습관을 나타냅니다."
+    },
+    {
+      "id": "G010",
+      "question_type": "문법 오류 식별",
+      "difficulty": "중급",
+      "question": "Find the error: He is taller than any other student in his class.",
+      "options": ["A) He is taller", "B) than any other student", "C) in his class", "D) No error"],
+      "answer": "D",
+      "explanation": "비교급 'taller'와 'than any other + 단수명사' 구문을 사용하여 반 내에서 다른 학생들보다 더 크다는 비교를 정확하게 표현하고 있습니다. 문법적 오류가 없습니다."
+    },
+     {
+      "id": "G011",
+      "question_type": "문장 완성",
+      "difficulty": "중급",
+      "question": "Hardly had I arrived at the station _____ the train departed.",
+      "options": ["A) when", "B) than", "C) then", "D) that"],
+      "answer": "A",
+      "explanation": "'Hardly had + 주어 + p.p.' 도치 구문은 '~하자마자 ...했다'는 의미로, 뒤에는 'when'이나 'before'가 오는 것이 일반적입니다. 'No sooner... than...' 구문과 구분해야 합니다."
+    },
+    {
+      "id": "G012",
+      "question_type": "문법 오류 식별",
+      "difficulty": "중급",
+      "question": "Identify the sentence with a grammatical error:",
+      "options": ["A) She is confident of winning the competition.", "B) He is capable to finish the task on time.", "C) They are interested in learning Spanish.", "D) We are worried about the test results."],
+      "answer": "B",
+      "explanation": "'capable' 뒤에는 전치사 'of'와 동명사(-ing)가 옵니다. 따라서 'He is capable of finishing the task on time'이 올바른 형태입니다."
+    },
+    {
+      "id": "G013",
+      "question_type": "문장 완성",
+      "difficulty": "중급",
+      "question": "The proposal sounds _____ good to be true.",
+      "options": ["A) very", "B) too", "C) enough", "D) so"],
+      "answer": "B",
+      "explanation": "'too ~ to ...' 구문은 '너무 ~해서 ...할 수 없다'는 의미입니다. 제안이 너무 좋아서 사실이라고 믿기 어렵다는 뜻이 자연스럽습니다."
+    },
+     {
+      "id": "G014",
+      "question_type": "문법 오류 식별",
+      "difficulty": "중급",
+      "question": "Find the error: The principal, along with the teachers, were at the meeting.",
+      "options": ["A) The principal, along with the teachers", "B) were at", "C) the meeting", "D) No error"],
+      "answer": "B",
+      "explanation": "'along with'와 같은 구문으로 연결될 경우, 동사의 수는 앞에 오는 주어('The principal')에 일치시킵니다. 'The principal'은 단수이므로 'were'가 아니라 'was'가 맞습니다."
+    },
+    {
+      "id": "G015",
+      "question_type": "문장 완성",
+      "difficulty": "중급",
+      "question": "He denied _____ the secret to anyone.",
+      "options": ["A) tell", "B) telling", "C) to tell", "D) told"],
+      "answer": "B",
+      "explanation": "동사 'deny' 뒤에는 동명사(-ing)가 목적어로 옵니다."
+    },
+    {
+      "id": "G016",
+      "question_type": "문법 오류 식별",
+      "difficulty": "고급",
+      "question": "Find the error: Had I known about your situation, I would have helped you.",
+      "options": ["A) Had I known", "B) about your situation", "C) I would have helped you", "D) No error"],
+      "answer": "D",
+      "explanation": "가정법 과거 완료에서 'If'가 생략되면 'Had'가 주어 앞으로 도치됩니다. 이 문장은 올바른 가정법 도치 구문입니다."
+    },
+    {
+      "id": "G017",
+      "question_type": "문장 완성",
+      "difficulty": "고급",
+      "question": "Such was the force of the explosion _____ windows were broken for miles around.",
+      "options": ["A) as", "B) that", "C) so", "D) then"],
+      "answer": "B",
+      "explanation": "'Such was the force that...' 구문은 '그 폭발의 위력이 대단하여 ...했다'는 의미의 결과 구문입니다. 'Such + be 동사 + 명사 + that 절' 형태로 사용됩니다."
+    },
+    {
+      "id": "G018",
+      "question_type": "문법 오류 식별",
+      "difficulty": "고급",
+      "question": "Identify the sentence with a grammatical error:",
+      "options": ["A) It is imperative that he finish the report by tomorrow.", "B) She recommended that he reads the book.", "C) They insisted that she be present at the meeting.", "D) We suggested that they leave early."],
+      "answer": "B",
+      "explanation": "'recommend'와 같이 제안, 요구, 주장 등을 나타내는 동사 뒤의 'that' 절에서는 동사원형 또는 'should + 동사원형'을 사용합니다. 따라서 'he reads'가 아니라 'he read' 또는 'he should read'가 맞습니다."
+    },
+    {
+      "id": "G019",
+      "question_type": "문장 완성",
+      "difficulty": "고급",
+      "question": "He behaved as if he _____ the king.",
+      "options": ["A) is", "B) was", "C) were", "D) had been"],
+      "answer": "C",
+      "explanation": "'as if' 뒤에 현재 사실과 반대되는 내용을 가정할 때는 가정법 과거를 사용하며, be 동사는 주어 인칭에 관계없이 'were'를 사용합니다. (He was the king이 아닌 He were the king)"
+    },
+    {
+      "id": "G020",
+      "question_type": "문법 오류 식별",
+      "difficulty": "고급",
+      "question": "Find the error: Not until all the guests had left did I went to bed.",
+      "options": ["A) Not until all the guests had left", "B) did I went", "C) to bed", "D) No error"],
+      "answer": "B",
+      "explanation": "'Not until' 구문이 문두에 와서 도치될 때, 'did' 조동사를 사용하면 뒤따르는 동사는 원형이 되어야 합니다. 따라서 'did I went'가 아니라 'did I go'가 맞습니다."
+    }
+  ],
+  "reading_comprehension": [
+    {
+      "id": "R001",
+      "passage_title": "A Day at the Beach",
+      "passage_text": "Tom and his sister, Lisa, went to the beach on a sunny day. They built a big sandcastle near the water. Lisa found some colorful shells. Tom swam in the sea, but only for a short time because the water was a little cold. They ate sandwiches for lunch. In the afternoon, they played with a red ball. They had a very fun day.",
+      "questions": [
+        {
+          "question_id_in_passage": "R001_Q1",
+          "question_type": "세부 정보 파악",
+          "difficulty": "초급",
+          "question": "What did Tom and Lisa build?",
+          "options": ["A) A big boat", "B) A small house", "C) A big sandcastle", "D) A bridge"],
+          "answer": "C",
+          "explanation": "지문에 'They built a big sandcastle near the water.'라고 명시되어 있습니다."
+        },
+        {
+          "question_id_in_passage": "R001_Q2",
+          "question_type": "세부 정보 파악",
+          "difficulty": "초급",
+          "question": "Why did Tom swim for only a short time?",
+          "options": ["A) He was tired.", "B) The water was cold.", "C) Lisa wanted to leave.", "D) He didn't like swimming."],
+          "answer": "B",
+          "explanation": "지문에 'Tom swam in the sea, but only for a short time because the water was a little cold.'라고 나와 있습니다."
+        }
+      ]
+    },
+    {
+      "id": "R002",
+      "passage_title": "The Importance of Sleep",
+      "passage_text": "Sleep is essential for good health. When you sleep, your body and mind can rest and repair themselves. Getting enough sleep helps you to think more clearly, concentrate better, and remember things more easily. It also helps your body fight off illnesses. Lack of sleep can make you feel tired, grumpy, and find it hard to focus. Most adults need about 7-9 hours of sleep per night. Children and teenagers usually need more.",
+      "questions": [
+        {
+          "question_id_in_passage": "R002_Q1",
+          "question_type": "요지 파악",
+          "difficulty": "중급",
+          "question": "What is the main idea of this passage?",
+          "options": ["A) How much sleep children need", "B) Why sleep is important for your health", "C) The best time to sleep", "D) How to fall asleep faster"],
+          "answer": "B",
+          "explanation": "이 글은 수면이 건강에 왜 중요한지에 대해 전반적으로 설명하고 있습니다."
+        },
+        {
+          "question_id_in_passage": "R002_Q2",
+          "question_type": "세부 정보 파악",
+          "difficulty": "중급",
+          "question": "According to the passage, what can lack of sleep cause?",
+          "options": ["A) Better concentration", "B) Feeling happy", "C) Difficulty focusing", "D) Improved memory"],
+          "answer": "C",
+          "explanation": "지문에 'Lack of sleep can ... find it hard to focus.'라고 명시되어 있습니다."
+        }
+      ]
+    },
+    {
+      "id": "R003",
+      "passage_title": "Renewable Energy Sources",
+      "passage_text": "Renewable energy comes from natural resources that are replenished constantly, such as sunlight, wind, rain, tides, waves, and geothermal heat. Unlike fossil fuels, which are finite and contribute to climate change, renewable energy sources are sustainable and have a much lower environmental impact. Solar power uses photovoltaic cells to convert sunlight into electricity. Wind power harnesses the kinetic energy of wind through turbines. Hydropower uses the energy of flowing water, often from dams. Geothermal energy taps into the heat from within the Earth.",
+      "questions": [
+        {
+          "question_id_in_passage": "R003_Q1",
+          "question_type": "세부 정보 파악",
+          "difficulty": "중급",
+          "question": "Which of the following is NOT mentioned as a source of renewable energy?",
+          "options": ["A) Sunlight", "B) Natural gas", "C) Wind", "D) Geothermal heat"],
+          "answer": "B",
+          "explanation": "지문에서는 태양광, 바람, 지열 등을 언급하지만 천연가스(Natural gas)는 재생 에너지가 아닌 화석 연료에 해당합니다."
+        },
+         {
+          "question_id_in_passage": "R003_Q2",
+          "question_type": "추론",
+          "difficulty": "고급",
+          "question": "Based on the passage, what is a key advantage of renewable energy over fossil fuels?",
+          "options": ["A) It is easier to transport.", "B) It is a finite resource.", "C) It has a lower environmental impact.", "D) It is more expensive to generate."],
+          "answer": "C",
+          "explanation": "지문에 'Unlike fossil fuels... renewable energy sources are sustainable and have a much lower environmental impact.'라고 언급되어 있습니다. 이는 재생 에너지가 화석 연료보다 환경 영향이 적다는 주요 장점을 나타냅니다."
+        },
+        {
+          "question_id_in_passage": "R003_Q3",
+          "question_type": "세부 정보 파악",
+          "difficulty": "고급",
+          "question": "How is solar power generated according to the text?",
+          "options": ["A) By capturing heat from the Earth", "B) By using dams to control water flow", "C) By converting wind into electricity", "D) By converting sunlight into electricity using photovoltaic cells"],
+          "answer": "D",
+          "explanation": "지문에 'Solar power uses photovoltaic cells to convert sunlight into electricity.'라고 명시되어 있습니다."
+        }
+      ]
+    },
+     {
+      "id": "R004",
+      "passage_title": "The History of the Internet",
+      "passage_text": "The Internet, as we know it today, evolved from ARPANET, a project funded by the U.S. Department of Defense in the late 1960s. Its initial purpose was to create a communication network that could function even if parts of it were destroyed, anticipating potential attacks. This decentralized design was a crucial innovation. Over the next few decades, ARPANET expanded and new protocols, like TCP/IP, were developed, enabling different networks to communicate with each other. The transition to the modern Internet accelerated in the late 1980s and early 1990s with the development of the World Wide Web by Tim Berners-Lee, which made the Internet accessible and useful for a wider public through browsers and hyperlinks. The privatization of the Internet infrastructure and the rise of commercial online services in the 1990s further fueled its rapid growth, transforming it from a research tool into a global communication and information platform.",
+      "questions": [
+        {
+          "question_id_in_passage": "R004_Q1",
+          "question_type": "세부 정보 파악",
+          "difficulty": "고급",
+          "question": "What was the initial project that the Internet evolved from?",
+          "options": ["A) The World Wide Web", "B) TCP/IP", "C) ARPANET", "D) The Department of Defense"],
+          "answer": "C",
+          "explanation": "지문에 'The Internet... evolved from ARPANET'이라고 명시되어 있습니다."
+        },
+        {
+          "question_id_in_passage": "R004_Q2",
+          "question_type": "추론",
+          "difficulty": "고급",
+          "question": "Which of the following best describes a significant factor in the Internet's transition to a global platform?",
+          "options": ["A) The limitation of communication networks", "B) The development of the World Wide Web and commercial services", "C) The decrease in government funding for research", "D) The focus solely on military communication"],
+          "answer": "B",
+          "explanation": "지문은 World Wide Web 개발과 상업 서비스의 부상이 인터넷을 연구 도구에서 글로벌 플랫폼으로 변화시킨 주요 요인임을 설명합니다."
+        },
+         {
+          "question_id_in_passage": "R004_Q3",
+          "question_type": "요지 파악",
+          "difficulty": "고급",
+          "question": "What is the primary focus of the passage?",
+          "options": ["A) The technical details of TCP/IP protocols", "B) The role of the military in technology development", "C) The historical development of the Internet from its origins to a global platform", "D) The impact of the Internet on modern communication"],
+          "answer": "C",
+          "explanation": "이 글은 ARPANET부터 시작하여 World Wide Web의 개발을 거쳐 현재의 인터넷이 되기까지의 역사적 발전 과정을 주요 내용으로 다루고 있습니다."
+        }
+      ]
+    }
+  ],
+  "listening_comprehension": [
+    {
+      "id": "L001",
+      "audioSrc": "https://v3.fal.media/files/penguin/YVUBw6yDVqyAiJlnsWMkO_output.mp3",
+      "script_title": "Ordering Coffee",
+      "script": "Barista: Good morning! What can I get for you?\nCustomer: Hi! Can I have a small black coffee, please?\nBarista: A small black coffee. Anything else?\nCustomer: No, thank you. Just the coffee.\nBarista: Okay, that will be $2.50.\nCustomer: Here you go.\nBarista: Thank you. Your coffee will be ready in a moment.",
+      "questions": [
+        {
+          "question_id_in_script": "L001_Q1",
+          "question_type": "세부 내용 파악",
+          "difficulty": "초급",
+          "question": "What kind of coffee did the customer order?",
+          "options": ["A) A large white coffee", "B) A small black coffee", "C) A small coffee with milk", "D) A large coffee with sugar"],
+          "answer": "B",
+          "explanation": "스크립트에서 손님이 'a small black coffee'를 주문했습니다."
+        },
+         {
+          "question_id_in_script": "L001_Q2",
+          "question_type": "세부 내용 파악",
+          "difficulty": "초급",
+          "question": "How much does the coffee cost?",
+          "options": ["A) $3.00", "B) $2.00", "C) $2.50", "D) $3.50"],
+          "answer": "C",
+          "explanation": "바리스타가 'that will be $2.50'라고 말했습니다."
+        }
+      ]
+    },
+    {
+      "id": "L002",
+      "audioSrc": "https://v3.fal.media/files/zebra/iZEVf3UKwYOnH2A5sPV0x_output.mp3",
+      "script_title": "Planning a Weekend Trip",
+      "script": "Sarah: Hey Mark, have you thought about what we should do this weekend?\nMark: Not really. I was thinking maybe we could go hiking?\nSarah: Hiking sounds fun, but the weather forecast says it might rain on Saturday.\nMark: Oh, right. How about going to that new art museum downtown? I heard it just opened.\nSarah: That's a great idea! We could spend a few hours there, and it's indoors so rain won't matter.\nMark: Perfect. We could grab lunch nearby afterwards.\nSarah: Sounds like a plan. Let's check the museum's opening hours online.",
+      "questions": [
+        {
+          "question_id_in_script": "L002_Q1",
+          "question_type": "요지 파악",
+          "difficulty": "중급",
+          "question": "What are Sarah and Mark discussing?",
+          "options": ["A) What to eat for lunch", "B) Where to go shopping", "C) How to avoid the rain", "D) Plans for the weekend"],
+          "answer": "D",
+          "explanation": "대화는 주말에 무엇을 할지에 대한 계획을 논의하는 내용입니다."
+        },
+        {
+          "question_id_in_script": "L002_Q2",
+          "question_type": "화자 의도 추론",
+          "difficulty": "중급",
+          "question": "Why does Sarah suggest going to the art museum?",
+          "options": ["A) She loves art museums.", "B) She wants to avoid the rain.", "C) Mark suggested it first.", "D) It's close to their home."],
+          "answer": "B",
+          "explanation": "사라는 하이킹 대신 미술관을 제안하며 'it's indoors so rain won't matter'라고 말합니다. 비를 피하기 위한 목적입니다."
+        },
+         {
+          "question_id_in_script": "L002_Q3",
+          "question_type": "세부 내용 파악",
+          "difficulty": "중급",
+          "question": "What will they do after visiting the museum?",
+          "options": ["A) Go hiking", "B) Check opening hours", "C) Get lunch", "D) Go home"],
+          "answer": "C",
+          "explanation": "Mark가 'We could grab lunch nearby afterwards.'라고 제안하고 Sarah가 동의합니다."
+        }
+      ]
+    },
+    {
+      "id": "L003",
+      "audioSrc": "https://v3.fal.media/files/penguin/SwfaRM3GzwbngHmW6RvMt_output.mp3",
+      "script_title": "University Lecture Excerpt",
+      "script": "Professor: Good morning, everyone. Today, we'll delve into the fascinating world of quantum mechanics, specifically focusing on the concept of superposition. In classical physics, an object is always in a definite state – a light switch is either on or off, a coin is either heads or tails. However, in quantum mechanics, a particle can exist in multiple states simultaneously. This is superposition. It's not that we don't know which state it's in; it literally exists in all possible states at once until it's measured. This might seem counter-intuitive, as it contradicts our everyday experience, but it's a fundamental principle that has been experimentally verified numerous times, for example, in the famous double-slit experiment with electrons. Understanding superposition is crucial to grasping more complex quantum phenomena like entanglement and quantum computing.",
+      "questions": [
+        {
+          "question_id_in_script": "L003_Q1",
+          "question_type": "요지 파악",
+          "difficulty": "고급",
+          "question": "What is the main topic of this lecture excerpt?",
+          "options": ["A) The history of classical physics", "B) The concept of superposition in quantum mechanics", "C) The results of the double-slit experiment", "D) The difference between entanglement and quantum computing"],
+          "answer": "B",
+          "explanation": "교수는 강의 시작부터 양자 역학의 '중첩(superposition)' 개념에 대해 자세히 설명하고 있습니다."
+        },
+         {
+          "question_id_in_script": "L003_Q2",
+          "question_type": "세부 내용 파악",
+          "difficulty": "고급",
+          "question": "According to the professor, how is a quantum particle different from a classical object in terms of state?",
+          "options": ["A) A quantum particle is always in a definite state.", "B) A classical object can exist in multiple states simultaneously.", "C) A quantum particle can exist in multiple states simultaneously.", "D) Neither can exist in multiple states."],
+          "answer": "C",
+          "explanation": "교수는 'in quantum mechanics, a particle can exist in multiple states simultaneously'라고 명확히 설명합니다."
+        }
+      ]
+    },
+     {
+      "id": "L004",
+      "audioSrc": "https://v3.fal.media/files/rabbit/biQkRD4EkFKX6nyQUn9bC_output.mp3",
+      "script_title": "News Report on Climate Change",
+      "script": "Reporter: Good evening. Our top story tonight focuses on the accelerating impacts of climate change worldwide. A new report released today warns that global temperatures are rising faster than previously predicted, leading to more frequent and intense extreme weather events. We're seeing unprecedented heatwaves in Europe, severe flooding in Asia, and prolonged droughts in Africa. These events are not isolated incidents but are directly linked to the increase in greenhouse gas emissions from human activities. The report emphasizes the urgent need for nations to transition away from fossil fuels towards renewable energy sources and to implement stricter policies to reduce carbon footprints. The scientific consensus is clear: without drastic action now, the consequences for ecosystems and human societies will be catastrophic.",
+      "questions": [
+        {
+          "question_id_in_script": "L004_Q1",
+          "question_type": "요지 파악",
+          "difficulty": "고급",
+          "question": "What is the main message of the news report?",
+          "options": ["A) New sources of renewable energy have been discovered.", "B) Climate change is slowing down.", "C) The impacts of climate change are worsening and require urgent action.", "D) Extreme weather events are unrelated to human activity."],
+          "answer": "C",
+          "explanation": "보도 내용은 기후 변화의 영향이 가속화되고 있으며, 즉각적인 조치가 필요하다는 경고를 전달합니다."
+        },
+        {
+          "question_id_in_script": "L004_Q2",
+          "question_type": "세부 내용 파악",
+          "difficulty": "고급",
+          "question": "According to the report mentioned, what is causing the increase in extreme weather events?",
+          "options": ["A) Natural climate cycles", "B) Decrease in greenhouse gas emissions", "C) Increase in volcanic activity", "D) Increase in greenhouse gas emissions from human activities"],
+          "answer": "D",
+          "explanation": "지문에 'These events are... directly linked to the increase in greenhouse gas emissions from human activities.'라고 명시되어 있습니다."
+        },
+         {
+          "question_id_in_script": "L004_Q3",
+          "question_type": "추론",
+          "difficulty": "고급",
+          "question": "What does the news report imply about the current efforts to combat climate change?",
+          "options": ["A) They are sufficient.", "B) They are too slow or insufficient.", "C) They are unnecessary.", "D) They are making the situation worse."],
+          "answer": "B",
+          "explanation": "'accelerating impacts', 'rising faster than previously predicted', 'urgent need for nations to transition', 'without drastic action now, the consequences... will be catastrophic' 등의 표현은 현재의 노력이 충분하지 않으며 더 빠르고 강력한 조치가 필요함을 시사합니다."
+        }
+      ]
+    }
+  ]
+}
