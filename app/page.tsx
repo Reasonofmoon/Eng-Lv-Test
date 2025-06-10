@@ -1,9 +1,14 @@
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { BookOpen, Clock, Trophy, Users } from "lucide-react"
 import Link from "next/link"
+import { useSession } from "next-auth/react"
 
 export default function HomePage() {
+  const { data: session, status } = useSession()
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
@@ -24,9 +29,22 @@ export default function HomePage() {
               <Link href="#" className="text-gray-500 hover:text-gray-900">
                 Results
               </Link>
-              <Link href="/auth/signin" className="text-gray-500 hover:text-gray-900">
-                Sign In
-              </Link>
+              {status === "loading" ? (
+                <span className="text-gray-500">Loading...</span>
+              ) : session ? (
+                <div className="flex items-center space-x-4">
+                  <span className="text-gray-700">Welcome, {session.user.name}</span>
+                  {(session.user.role === "admin" || session.user.role === "teacher") && (
+                    <Link href="/admin" className="text-blue-600 hover:text-blue-800">
+                      Admin
+                    </Link>
+                  )}
+                </div>
+              ) : (
+                <Link href="/auth/signin" className="text-gray-500 hover:text-gray-900">
+                  Sign In
+                </Link>
+              )}
             </nav>
           </div>
         </div>

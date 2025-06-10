@@ -56,33 +56,38 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        try {
+          if (!credentials?.email || !credentials?.password) {
+            return null
+          }
+
+          // Find user by email
+          const user = users.find((u) => u.email === credentials.email && u.isActive)
+
+          if (!user) {
+            return null
+          }
+
+          // Mock password verification - in production use bcrypt
+          const isValidPassword = credentials.password === "password123"
+
+          if (!isValidPassword) {
+            return null
+          }
+
+          // Update last login
+          user.lastLogin = new Date()
+
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            role: user.role,
+            permissions: user.permissions,
+          }
+        } catch (error) {
+          console.error("Auth error:", error)
           return null
-        }
-
-        // In production, verify password hash
-        const user = users.find((u) => u.email === credentials.email && u.isActive)
-
-        if (!user) {
-          return null
-        }
-
-        // Mock password verification - in production use bcrypt
-        const isValidPassword = credentials.password === "password123"
-
-        if (!isValidPassword) {
-          return null
-        }
-
-        // Update last login
-        user.lastLogin = new Date()
-
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
-          permissions: user.permissions,
         }
       },
     }),
@@ -112,7 +117,8 @@ export const authOptions: NextAuthOptions = {
     signIn: "/auth/signin",
     error: "/auth/error",
   },
-  debug: process.env.NODE_ENV === "development",
+  secret: process.env.NEXTAUTH_SECRET || "fallback-secret-for-development",
+  debug: false,
 }
 
 export async function getUserById(id: string): Promise<User | null> {
