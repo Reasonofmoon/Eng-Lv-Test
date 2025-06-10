@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import { signIn, getSession } from "next-auth/react"
 import { useRouter, useSearchParams } from "next/navigation"
@@ -21,79 +23,41 @@ export default function SignInPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get("callbackUrl") || "/"
-  const errorParam = searchParams.get("error")
 
-  // Handle URL error parameter
-  const useEffect = window.React.useEffect
-  useEffect(() => {
-    if (errorParam) {
-      switch (errorParam) {
-        case "CredentialsSignin":
-          setError("Invalid email or password. Please try again.")
-          break
-        case "AccessDenied":
-          setError("Access denied. You don't have permission to access this resource.")
-          break
-        case "Configuration":
-          setError("Server configuration error. Please contact support.")
-          break
-        default:
-          setError("An authentication error occurred. Please try again.")
-      }
-    }
-  }, [errorParam])
+  // Quick fill demo credentials
+  const fillDemoCredentials = (userType: "admin" | "teacher" | "student") => {
+    setEmail(`${userType}@englishtest.com`)
+    setPassword("password123")
+    setError("")
+  }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setError("")
 
     try {
-      console.log("Attempting sign in with:", email)
-
       const result = await signIn("credentials", {
         email: email.trim(),
         password,
         redirect: false,
       })
 
-      console.log("Sign in result:", result)
-
       if (result?.error) {
-        console.error("Sign in error:", result.error)
-        switch (result.error) {
-          case "CredentialsSignin":
-            setError("Invalid email or password. Please check your credentials.")
-            break
-          case "AccessDenied":
-            setError("Access denied. Your account may be inactive.")
-            break
-          default:
-            setError("Authentication failed. Please try again.")
-        }
+        setError("Invalid email or password. Please check your credentials and try again.")
       } else if (result?.ok) {
-        console.log("Sign in successful, getting session...")
-
-        // Get updated session to check role
+        // Get session to determine redirect
         const session = await getSession()
-        console.log("Session:", session)
 
-        if (session?.user) {
-          // Redirect based on user role
-          if (session.user.role === "admin" || session.user.role === "teacher") {
-            router.push("/admin")
-          } else {
-            router.push(callbackUrl)
-          }
+        if (session?.user?.role === "admin" || session?.user?.role === "teacher") {
+          router.push("/admin")
         } else {
           router.push(callbackUrl)
         }
-      } else {
-        setError("An unexpected error occurred. Please try again.")
       }
     } catch (error) {
-      console.error("Sign in exception:", error)
-      setError("Network error. Please check your connection and try again.")
+      console.error("Sign in error:", error)
+      setError("An unexpected error occurred. Please try again.")
     } finally {
       setIsLoading(false)
     }
@@ -107,7 +71,7 @@ export default function SignInPage() {
             <Lock className="h-6 w-6 text-blue-600" />
           </div>
           <CardTitle className="text-2xl">Sign In</CardTitle>
-          <CardDescription>Enter your credentials to access the English Level Test platform</CardDescription>
+          <CardDescription>Enter your credentials to access the platform</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -172,24 +136,46 @@ export default function SignInPage() {
             </Button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-gray-600">
-            <p className="font-medium mb-2">Demo Credentials:</p>
-            <div className="space-y-1 text-xs bg-gray-50 p-3 rounded-lg">
-              <p>
-                <strong>Admin:</strong> admin@englishtest.com / password123
-              </p>
-              <p>
-                <strong>Teacher:</strong> teacher@englishtest.com / password123
-              </p>
-              <p>
-                <strong>Student:</strong> student@englishtest.com / password123
-              </p>
+          {/* Demo Credentials */}
+          <div className="mt-6 space-y-3">
+            <p className="text-sm font-medium text-center text-gray-700">Quick Demo Access:</p>
+            <div className="grid grid-cols-3 gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => fillDemoCredentials("admin")}
+                disabled={isLoading}
+                className="text-xs"
+              >
+                Admin
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => fillDemoCredentials("teacher")}
+                disabled={isLoading}
+                className="text-xs"
+              >
+                Teacher
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => fillDemoCredentials("student")}
+                disabled={isLoading}
+                className="text-xs"
+              >
+                Student
+              </Button>
+            </div>
+            <div className="text-xs text-gray-500 text-center bg-gray-50 p-2 rounded">
+              All demo accounts use password: <code className="font-mono">password123</code>
             </div>
           </div>
 
           <div className="mt-6 text-center">
             <Link href="/" className="text-sm text-blue-600 hover:underline">
-              Back to Home
+              ← Back to Home
             </Link>
           </div>
         </CardContent>
