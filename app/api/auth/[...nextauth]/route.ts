@@ -7,7 +7,7 @@ const users = [
   {
     id: "1",
     email: "admin@englishtest.com",
-    password: "password123", // In production, this would be hashed
+    password: "password123",
     name: "System Administrator",
     role: "admin",
     permissions: ["*"],
@@ -33,20 +33,21 @@ const users = [
   },
 ]
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "credentials",
+      id: "credentials",
+      name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null
-        }
-
         try {
+          if (!credentials?.email || !credentials?.password) {
+            return null
+          }
+
           // Find user by email
           const user = users.find((u) => u.email.toLowerCase() === credentials.email.toLowerCase() && u.isActive)
 
@@ -54,7 +55,7 @@ const authOptions: NextAuthOptions = {
             return null
           }
 
-          // Check password (in production, use bcrypt.compare)
+          // Check password
           if (user.password !== credentials.password) {
             return null
           }
@@ -100,7 +101,9 @@ const authOptions: NextAuthOptions = {
     error: "/auth/error",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === "development",
 }
 
 const handler = NextAuth(authOptions)
+
 export { handler as GET, handler as POST }

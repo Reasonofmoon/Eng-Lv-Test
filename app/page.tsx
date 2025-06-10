@@ -2,12 +2,16 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Clock, Trophy, Users } from "lucide-react"
+import { BookOpen, Clock, Trophy, Users, LogIn, Settings } from "lucide-react"
 import Link from "next/link"
-import { useSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 
 export default function HomePage() {
   const { data: session, status } = useSession()
+
+  const handleSignOut = () => {
+    signOut({ callbackUrl: "/" })
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
@@ -19,31 +23,41 @@ export default function HomePage() {
               <BookOpen className="h-8 w-8 text-blue-600 mr-3" />
               <h1 className="text-2xl font-bold text-gray-900">English Level Test</h1>
             </div>
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden md:flex space-x-8 items-center">
               <Link href="#" className="text-gray-500 hover:text-gray-900">
                 Home
               </Link>
-              <Link href="#" className="text-gray-500 hover:text-gray-900">
+              <Link href="/test" className="text-gray-500 hover:text-gray-900">
                 Tests
               </Link>
-              <Link href="#" className="text-gray-500 hover:text-gray-900">
+              <Link href="/results" className="text-gray-500 hover:text-gray-900">
                 Results
               </Link>
+
               {status === "loading" ? (
-                <span className="text-gray-500">Loading...</span>
+                <div className="animate-pulse bg-gray-200 h-8 w-20 rounded"></div>
               ) : session ? (
                 <div className="flex items-center space-x-4">
                   <span className="text-gray-700">Welcome, {session.user.name}</span>
                   {(session.user.role === "admin" || session.user.role === "teacher") && (
-                    <Link href="/admin" className="text-blue-600 hover:text-blue-800">
-                      Admin
-                    </Link>
+                    <Button variant="outline" size="sm" asChild>
+                      <Link href="/admin">
+                        <Settings className="h-4 w-4 mr-2" />
+                        Admin
+                      </Link>
+                    </Button>
                   )}
+                  <Button variant="outline" size="sm" onClick={handleSignOut}>
+                    Sign Out
+                  </Button>
                 </div>
               ) : (
-                <Link href="/auth/signin" className="text-gray-500 hover:text-gray-900">
-                  Sign In
-                </Link>
+                <Button asChild>
+                  <Link href="/auth/signin">
+                    <LogIn className="h-4 w-4 mr-2" />
+                    Sign In
+                  </Link>
+                </Button>
               )}
             </nav>
           </div>
@@ -63,14 +77,12 @@ export default function HomePage() {
           </p>
           <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
             <div className="rounded-md shadow">
-              <Link href="/test">
-                <Button size="lg" className="w-full sm:w-auto">
-                  Start Test Now
-                </Button>
-              </Link>
+              <Button size="lg" asChild>
+                <Link href="/test">Start Test Now</Link>
+              </Button>
             </div>
             <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg">
                 View Sample Questions
               </Button>
             </div>
@@ -140,17 +152,44 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Session Debug Info (Development Only) */}
+      {process.env.NODE_ENV === "development" && (
+        <section className="py-8 bg-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-sm">Debug Info (Development)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-xs space-y-2">
+                  <p>
+                    <strong>Status:</strong> {status}
+                  </p>
+                  <p>
+                    <strong>User:</strong> {session?.user?.email || "Not signed in"}
+                  </p>
+                  <p>
+                    <strong>Role:</strong> {session?.user?.role || "N/A"}
+                  </p>
+                  <p>
+                    <strong>Session:</strong> {session ? "Active" : "None"}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      )}
+
       {/* CTA Section */}
       <section className="py-16 bg-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-3xl font-extrabold text-white">Ready to Test Your English Level?</h3>
           <p className="mt-4 text-xl text-blue-100">Start your assessment now and discover your true potential</p>
           <div className="mt-8">
-            <Link href="/test">
-              <Button size="lg" variant="secondary">
-                Begin Assessment
-              </Button>
-            </Link>
+            <Button size="lg" variant="secondary" asChild>
+              <Link href="/test">Begin Assessment</Link>
+            </Button>
           </div>
         </div>
       </section>
