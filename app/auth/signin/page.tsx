@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import { signIn, getSession } from "next-auth/react"
 import { useRouter, useSearchParams } from "next/navigation"
@@ -10,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Eye, EyeOff, Lock, Mail, AlertCircle } from "lucide-react"
+import { Eye, EyeOff, Lock, Mail, AlertCircle, Loader2 } from "lucide-react"
 import Link from "next/link"
 
 export default function SignInPage() {
@@ -23,33 +21,79 @@ export default function SignInPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get("callbackUrl") || "/"
+  const errorParam = searchParams.get("error")
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Handle URL error parameter
+  const useEffect = window.React.useEffect
+  useEffect(() => {
+    if (errorParam) {
+      switch (errorParam) {
+        case "CredentialsSignin":
+          setError("Invalid email or password. Please try again.")
+          break
+        case "AccessDenied":
+          setError("Access denied. You don't have permission to access this resource.")
+          break
+        case "Configuration":
+          setError("Server configuration error. Please contact support.")
+          break
+        default:
+          setError("An authentication error occurred. Please try again.")
+      }
+    }
+  }, [errorParam])
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
     setError("")
 
     try {
+      console.log("Attempting sign in with:", email)
+
       const result = await signIn("credentials", {
-        email,
+        email: email.trim(),
         password,
         redirect: false,
       })
 
+      console.log("Sign in result:", result)
+
       if (result?.error) {
-        setError("Invalid email or password")
-      } else {
+        console.error("Sign in error:", result.error)
+        switch (result.error) {
+          case "CredentialsSignin":
+            setError("Invalid email or password. Please check your credentials.")
+            break
+          case "AccessDenied":
+            setError("Access denied. Your account may be inactive.")
+            break
+          default:
+            setError("Authentication failed. Please try again.")
+        }
+      } else if (result?.ok) {
+        console.log("Sign in successful, getting session...")
+
         // Get updated session to check role
         const session = await getSession()
+        console.log("Session:", session)
 
-        if (session?.user.role === "admin" || session?.user.role === "teacher") {
-          router.push("/admin")
+        if (session?.user) {
+          // Redirect based on user role
+          if (session.user.role === "admin" || session.user.role === "teacher") {
+            router.push("/admin")
+          } else {
+            router.push(callbackUrl)
+          }
         } else {
           router.push(callbackUrl)
         }
+      } else {
+        setError("An unexpected error occurred. Please try again.")
       }
     } catch (error) {
-      setError("An error occurred. Please try again.")
+      console.error("Sign in exception:", error)
+      setError("Network error. Please check your connection and try again.")
     } finally {
       setIsLoading(false)
     }
@@ -86,6 +130,7 @@ export default function SignInPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"
                   required
+                  disabled={isLoading}
                 />
               </div>
             </div>
@@ -102,11 +147,13 @@ export default function SignInPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="pl-10 pr-10"
                   required
+                  disabled={isLoading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                  disabled={isLoading}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -114,13 +161,20 @@ export default function SignInPage() {
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Signing in..." : "Sign In"}
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Signing in...
+                </>
+              ) : (
+                "Sign In"
+              )}
             </Button>
           </form>
 
           <div className="mt-6 text-center text-sm text-gray-600">
-            <p>Demo Credentials:</p>
-            <div className="mt-2 space-y-1 text-xs">
+            <p className="font-medium mb-2">Demo Credentials:</p>
+            <div className="space-y-1 text-xs bg-gray-50 p-3 rounded-lg">
               <p>
                 <strong>Admin:</strong> admin@englishtest.com / password123
               </p>
