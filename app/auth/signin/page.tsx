@@ -10,15 +10,15 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Eye, EyeOff, Lock, Mail, AlertCircle, Loader2 } from "lucide-react"
+import { Lock, Mail, AlertCircle, Loader2 } from "lucide-react"
 import Link from "next/link"
 
 export default function SignInPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
+  const [debugInfo, setDebugInfo] = useState<any>(null)
 
   const router = useRouter()
 
@@ -28,27 +28,43 @@ export default function SignInPage() {
     setError("")
   }
 
+  const testAuthEndpoint = async () => {
+    try {
+      const response = await fetch("/api/auth/providers")
+      const data = await response.text()
+      setDebugInfo({ providers: data.substring(0, 200) + "..." })
+    } catch (err: any) {
+      setDebugInfo({ error: err.message })
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setError("")
 
     try {
+      console.log("Attempting sign in with:", email)
+
       const result = await signIn("credentials", {
         email: email.trim(),
         password,
         redirect: false,
       })
 
+      console.log("Sign in result:", result)
+
       if (result?.error) {
-        setError("Invalid email or password. Please try again.")
+        setError(`Authentication failed: ${result.error}`)
       } else if (result?.ok) {
         router.push("/")
         router.refresh()
+      } else {
+        setError("Unknown authentication error occurred")
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Sign in error:", error)
-      setError("An unexpected error occurred. Please try again.")
+      setError(`Sign in failed: ${error.message}`)
     } finally {
       setIsLoading(false)
     }
@@ -62,17 +78,26 @@ export default function SignInPage() {
             <Lock className="h-6 w-6 text-blue-600" />
           </div>
           <CardTitle className="text-2xl">Sign In</CardTitle>
-          <CardDescription>Enter your credentials to access the platform</CardDescription>
+          <CardDescription>Test authentication system</CardDescription>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
-              <Alert variant="destructive">
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
+        <CardContent className="space-y-4">
+          {error && (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
 
+          {debugInfo && (
+            <Alert>
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>
+                <pre className="text-xs">{JSON.stringify(debugInfo, null, 2)}</pre>
+              </AlertDescription>
+            </Alert>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <div className="relative">
@@ -96,22 +121,14 @@ export default function SignInPage() {
                 <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Input
                   id="password"
-                  type={showPassword ? "text" : "password"}
+                  type="password"
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 pr-10"
+                  className="pl-10"
                   required
                   disabled={isLoading}
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
-                  disabled={isLoading}
-                >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
               </div>
             </div>
 
@@ -128,8 +145,8 @@ export default function SignInPage() {
           </form>
 
           {/* Demo Credentials */}
-          <div className="mt-6 space-y-3">
-            <p className="text-sm font-medium text-center text-gray-700">Quick Demo Access:</p>
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-center text-gray-700">Demo Accounts:</p>
             <div className="grid grid-cols-3 gap-2">
               <Button
                 variant="outline"
@@ -159,12 +176,16 @@ export default function SignInPage() {
                 Student
               </Button>
             </div>
-            <div className="text-xs text-gray-500 text-center bg-gray-50 p-2 rounded">
-              All demo accounts use password: <code className="font-mono">password123</code>
-            </div>
           </div>
 
-          <div className="mt-6 text-center">
+          {/* Debug Tools */}
+          <div className="space-y-2">
+            <Button variant="outline" size="sm" onClick={testAuthEndpoint} className="w-full text-xs">
+              Test Auth Endpoint
+            </Button>
+          </div>
+
+          <div className="text-center">
             <Link href="/" className="text-sm text-blue-600 hover:underline">
               ← Back to Home
             </Link>
