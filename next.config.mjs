@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -9,6 +10,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-}
+  env: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  },
+};
 
-export default nextConfig
+export default nextConfig;
