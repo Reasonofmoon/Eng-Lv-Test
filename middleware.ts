@@ -1,29 +1,31 @@
-import { withAuth } from "next-auth/middleware"
+import { NextResponse } from "next/server"
+import type { NextRequest } from "next/server"
+import { getToken } from "next-auth/jwt"
 
-export default withAuth(
-  function middleware(req) {
-    // Add any additional middleware logic here
-  },
-  {
-    callbacks: {
-      authorized: ({ token, req }) => {
-        // Allow access to public routes
-        if (req.nextUrl.pathname.startsWith("/auth")) {
-          return true
-        }
+export async function middleware(request: NextRequest) {
+  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
+  const { pathname } = request.nextUrl
 
-        // Require authentication for admin routes
-        if (req.nextUrl.pathname.startsWith("/admin")) {
-          return !!token && (token.role === "admin" || token.role === "teacher")
-        }
+  // Allow access to auth pages
+  if (pathname.startsWith("/auth")) {
+    return NextResponse.next()
+  }
 
-        // Allow access to other routes if authenticated or public
-        return true
-      },
-    },
-  },
-)
+  // Protect admin routes
+  if (pathname.startsWith("/admin")) {
+    if (!token) {
+      return NextResponse.redirect(new URL("/auth/signin", request.url))
+    }
+
+    // Check if user has admin or teacher role
+    if (token.role !== "admin" && token.role !== "teacher") {
+      return NextResponse.redirect(new URL("/", request.url))
+    }
+  }
+
+  return NextResponse.next()
+}
 
 export const config = {
-  matcher: ["/admin/:path*", "/auth/:path*"],
+  matcher: ["/admin/:path*"],
 }

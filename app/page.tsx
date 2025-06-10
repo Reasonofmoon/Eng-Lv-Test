@@ -24,8 +24,8 @@ export default function HomePage() {
               <Link href="#" className="text-gray-500 hover:text-gray-900">
                 Results
               </Link>
-              <Link href="#" className="text-gray-500 hover:text-gray-900">
-                About
+              <Link href="/auth/signin" className="text-gray-500 hover:text-gray-900">
+                Sign In
               </Link>
             </nav>
           </div>

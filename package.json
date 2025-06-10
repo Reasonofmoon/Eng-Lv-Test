@@ -12,7 +12,6 @@
     "@ai-sdk/openai": "^0.0.66",
     "@auth/core": "latest",
     "@neondatabase/serverless": "^0.10.1",
-    "@next-auth/prisma-adapter": "^1.0.7",
     "@radix-ui/react-avatar": "latest",
     "@radix-ui/react-calendar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.2",

@@ -115,6 +115,7 @@ export const authOptions: NextAuthOptions = {
     signIn: "/auth/signin",
     error: "/auth/error",
   },
+  secret: process.env.NEXTAUTH_SECRET,
 }
 
 export async function getUserById(id: string): Promise<User | null> {
