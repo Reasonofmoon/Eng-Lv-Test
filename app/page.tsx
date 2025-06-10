@@ -1,16 +1,31 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Clock, Trophy, Users, LogIn, Settings } from "lucide-react"
+import { BookOpen, Clock, Trophy, Users, LogIn, Settings, AlertCircle } from "lucide-react"
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function HomePage() {
   const { data: session, status } = useSession()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleSignOut = () => {
     signOut({ callbackUrl: "/" })
+  }
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    )
   }
 
   return (
@@ -23,17 +38,7 @@ export default function HomePage() {
               <BookOpen className="h-8 w-8 text-blue-600 mr-3" />
               <h1 className="text-2xl font-bold text-gray-900">English Level Test</h1>
             </div>
-            <nav className="hidden md:flex space-x-8 items-center">
-              <Link href="#" className="text-gray-500 hover:text-gray-900">
-                Home
-              </Link>
-              <Link href="/test" className="text-gray-500 hover:text-gray-900">
-                Tests
-              </Link>
-              <Link href="/results" className="text-gray-500 hover:text-gray-900">
-                Results
-              </Link>
-
+            <nav className="flex items-center space-x-4">
               {status === "loading" ? (
                 <div className="animate-pulse bg-gray-200 h-8 w-20 rounded"></div>
               ) : session ? (
@@ -63,6 +68,21 @@ export default function HomePage() {
           </div>
         </div>
       </header>
+
+      {/* Debug Section for Development */}
+      {process.env.NODE_ENV === "development" && (
+        <div className="bg-yellow-50 border-b border-yellow-200 p-4">
+          <div className="max-w-7xl mx-auto">
+            <Alert>
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>
+                <strong>Debug Info:</strong> Status: {status} | User: {session?.user?.email || "None"} | Role:{" "}
+                {session?.user?.role || "N/A"}
+              </AlertDescription>
+            </Alert>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="py-20">
@@ -151,35 +171,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Session Debug Info (Development Only) */}
-      {process.env.NODE_ENV === "development" && (
-        <section className="py-8 bg-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sm">Debug Info (Development)</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-xs space-y-2">
-                  <p>
-                    <strong>Status:</strong> {status}
-                  </p>
-                  <p>
-                    <strong>User:</strong> {session?.user?.email || "Not signed in"}
-                  </p>
-                  <p>
-                    <strong>Role:</strong> {session?.user?.role || "N/A"}
-                  </p>
-                  <p>
-                    <strong>Session:</strong> {session ? "Active" : "None"}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      )}
 
       {/* CTA Section */}
       <section className="py-16 bg-blue-600">

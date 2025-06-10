@@ -1,83 +1,44 @@
 import NextAuth from "next-auth"
-import type { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-// Mock user database - in production, this would be a real database
-const users = [
-  {
-    id: "1",
-    email: "admin@englishtest.com",
-    password: "password123",
-    name: "System Administrator",
-    role: "admin",
-    permissions: ["*"],
-    isActive: true,
-  },
-  {
-    id: "2",
-    email: "teacher@englishtest.com",
-    password: "password123",
-    name: "English Teacher",
-    role: "teacher",
-    permissions: ["questions:read", "questions:write", "results:read", "users:read", "analytics:read"],
-    isActive: true,
-  },
-  {
-    id: "3",
-    email: "student@englishtest.com",
-    password: "password123",
-    name: "Test Student",
-    role: "student",
-    permissions: ["tests:take", "results:own"],
-    isActive: true,
-  },
-]
-
-export const authOptions: NextAuthOptions = {
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      id: "credentials",
-      name: "Credentials",
+      name: "credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        try {
-          if (!credentials?.email || !credentials?.password) {
-            return null
-          }
+        // Simple hardcoded users for testing
+        const users = [
+          { id: "1", email: "admin@englishtest.com", password: "password123", name: "Admin", role: "admin" },
+          { id: "2", email: "teacher@englishtest.com", password: "password123", name: "Teacher", role: "teacher" },
+          { id: "3", email: "student@englishtest.com", password: "password123", name: "Student", role: "student" },
+        ]
 
-          // Find user by email
-          const user = users.find((u) => u.email.toLowerCase() === credentials.email.toLowerCase() && u.isActive)
+        if (!credentials?.email || !credentials?.password) {
+          return null
+        }
 
-          if (!user) {
-            return null
-          }
+        const user = users.find((u) => u.email === credentials.email && u.password === credentials.password)
 
-          // Check password
-          if (user.password !== credentials.password) {
-            return null
-          }
-
-          // Return user object (without password)
+        if (user) {
           return {
             id: user.id,
             email: user.email,
             name: user.name,
             role: user.role,
-            permissions: user.permissions,
+            permissions: user.role === "admin" ? ["*"] : ["tests:take"],
           }
-        } catch (error) {
-          console.error("Authorization error:", error)
-          return null
         }
+
+        return null
       },
     }),
   ],
   session: {
     strategy: "jwt",
-    maxAge: 24 * 60 * 60, // 24 hours
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -88,7 +49,7 @@ export const authOptions: NextAuthOptions = {
       return token
     },
     async session({ session, token }) {
-      if (token && session.user) {
+      if (session.user) {
         session.user.id = token.sub!
         session.user.role = token.role as string
         session.user.permissions = token.permissions as string[]
@@ -100,10 +61,6 @@ export const authOptions: NextAuthOptions = {
     signIn: "/auth/signin",
     error: "/auth/error",
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === "development",
-}
-
-const handler = NextAuth(authOptions)
+})
 
 export { handler as GET, handler as POST }

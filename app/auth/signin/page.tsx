@@ -3,8 +3,8 @@
 import type React from "react"
 
 import { useState } from "react"
-import { signIn, getSession } from "next-auth/react"
-import { useRouter, useSearchParams } from "next/navigation"
+import { signIn } from "next-auth/react"
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -21,10 +21,7 @@ export default function SignInPage() {
   const [error, setError] = useState("")
 
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("callbackUrl") || "/"
 
-  // Quick fill demo credentials
   const fillDemoCredentials = (userType: "admin" | "teacher" | "student") => {
     setEmail(`${userType}@englishtest.com`)
     setPassword("password123")
@@ -44,16 +41,10 @@ export default function SignInPage() {
       })
 
       if (result?.error) {
-        setError("Invalid email or password. Please check your credentials and try again.")
+        setError("Invalid email or password. Please try again.")
       } else if (result?.ok) {
-        // Get session to determine redirect
-        const session = await getSession()
-
-        if (session?.user?.role === "admin" || session?.user?.role === "teacher") {
-          router.push("/admin")
-        } else {
-          router.push(callbackUrl)
-        }
+        router.push("/")
+        router.refresh()
       }
     } catch (error) {
       console.error("Sign in error:", error)
